@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shape"
+    android:layout_margin="5dp">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweathersans_medium"
+            android:gravity="center"
+            android:text="1 AM"
+            android:textColor="#FFFFFF" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/hourlylottieAnimation"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/sun" />
+
+        <TextView
+            android:id="@+id/hourlytemp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweathersans_medium"
+            android:gravity="center"
+            android:text="00°C"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</FrameLayout>
