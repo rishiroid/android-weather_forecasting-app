@@ -21,6 +21,7 @@ class WeatherViewModel : ViewModel() {
         private val TAG=WeatherViewModel::class.java.canonicalName
     }
      val todaysWeatherLiveDataList=MutableLiveData<List<WeatherList>>()
+     val tomorrowWeatherData=MutableLiveData<List<WeatherList>?>()
      val futurWeatherLiveDataList=MutableLiveData<List<WeatherList>>()
      val closerToExactWeather=MutableLiveData<WeatherList?>()
      val cityName=MutableLiveData<String>()
@@ -82,10 +83,12 @@ class WeatherViewModel : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun getFutureWeather(city:String?=null)=viewModelScope.launch(Dispatchers.IO){
         val futureWeatherList= mutableListOf<WeatherList>()
-
+        val tommorrowWeatherList= mutableListOf<WeatherList>()
         val currentDateTime= LocalDateTime.now()
         val currentDateFormated=currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
+        val tommorrowDateTime=LocalDateTime.now().plusDays(1)
+        val tommorrowDateTimeformated=tommorrowDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
         val lat=sharedPrefs.getValue("lat").toString()
         val lon=sharedPrefs.getValue("lon").toString()
@@ -102,9 +105,15 @@ class WeatherViewModel : ViewModel() {
             Log.d(TAG,"CityName:"+response.body()?.city?.name)
             cityName.postValue(response.body()?.city?.name)
 
+            val tomorrowWeatherList= weatherList?.filter{ weather ->
+                weather.dt_txt.split("\\s".toRegex()).contains(tommorrowDateTimeformated)
+            }
+            Log.d(TAG, "TomorrowWeatherList:$tomorrowWeatherList")
+            tomorrowWeatherData.postValue(tomorrowWeatherList)
             weatherList?.forEach{
-                //separate all the weather objects that have the date of today
-                if(!it.dt_txt.split("\\s".toRegex()).contains(currentDateFormated)){
+                //separate all the weather objects that have the date of today and tommorrow
+                if(!it.dt_txt.split("\\s".toRegex()).contains(currentDateFormated) &&
+                    !it.dt_txt.split("\\s".toRegex()).contains(tommorrowDateTimeformated)){
                     Log.d(TAG,"split"+it.dt_txt.split("\\s".toRegex()))
                     Log.d(TAG,"substring"+it.dt_txt.substring(16,19))
                     if(it.dt_txt.substring(11,16)=="12:00"){
