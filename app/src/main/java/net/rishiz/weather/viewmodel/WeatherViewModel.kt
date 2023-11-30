@@ -12,8 +12,11 @@ import net.rishiz.weather.RetrofitInstance
 import net.rishiz.weather.SharedPrefs
 import net.rishiz.weather.WeatherApplication
 import net.rishiz.weather.model.WeatherList
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 import kotlin.math.abs
 
 class WeatherViewModel : ViewModel() {
@@ -25,8 +28,8 @@ class WeatherViewModel : ViewModel() {
      val futurWeatherLiveDataList=MutableLiveData<List<WeatherList>>()
      val closerToExactWeather=MutableLiveData<WeatherList?>()
      val cityName=MutableLiveData<String>()
-     val sunrise=MutableLiveData<String>()
-     val sunset=MutableLiveData<String>()
+     val sunrise=MutableLiveData<String?>()
+     val sunset=MutableLiveData<String?>()
      val context=WeatherApplication.instance
      private val sharedPrefs=SharedPrefs.getInstance(context)
 
@@ -53,13 +56,12 @@ class WeatherViewModel : ViewModel() {
         if(response.isSuccessful){
             val weatherList=response.body()?.list
             Log.d(TAG, "weatherList$weatherList")
-//             cityName.postValue(response.body()?.city!!.name)
-//            Log.d("vm", "cityName"+response.body()?.city?.name)
-//             sunrise.value=(response.body()?.city?.sunrise.toString())
-//            Log.d("vm", "sunrise"+response.body()?.city?.sunrise)
-//             sunset.value=(response.body()?.city?.sunset.toString())
-//            Log.d("vm", "cityName"+response.body()?.city?.sunrise)
-
+            val city=response.body()?.city!!.name
+            val sunRise= response.body()?.city?.sunrise?.let { time(it.toLong()) }
+            val sunSet=response.body()?.city?.sunset?.let{ time(it.toLong()) }
+            cityName.postValue(city)
+            sunrise.postValue(sunRise)
+            sunset.postValue(sunSet)
             weatherList?.forEach{
                 //separate all the weather objects that have the date of today
                 Log.d(TAG, "date from api:"+it.dt_txt.split("\\s".toRegex()).contains(currentDateFormated))
@@ -102,8 +104,6 @@ class WeatherViewModel : ViewModel() {
         val response=call.execute()
         if(response.isSuccessful){
             val weatherList=response.body()?.list
-            Log.d(TAG,"CityName:"+response.body()?.city?.name)
-            cityName.postValue(response.body()?.city?.name)
 
             val tomorrowWeatherList= weatherList?.filter{ weather ->
                 weather.dt_txt.split("\\s".toRegex()).contains(tommorrowDateTimeformated)
@@ -124,7 +124,7 @@ class WeatherViewModel : ViewModel() {
                 }
 
             }
-            Log.d(TAG,"futurWeatherLiveDataList:"+futureWeatherList)
+            Log.d(TAG, "FuturWeatherLiveDataList:$futureWeatherList")
             futurWeatherLiveDataList.postValue(futureWeatherList)
 
         }
@@ -152,4 +152,14 @@ class WeatherViewModel : ViewModel() {
         val parts = time.split(":")
         return parts[0].toInt()*60+parts[1].toInt()
     }
+     fun convertTempFaherenheitToCelsius(tempFahrenheit: Double): String {
+        val tempCelsius=(tempFahrenheit.minus(273.15))
+        return String.format("%.2f",tempCelsius)
+    }
+    fun time(timestamp: Long):String{
+        val sdf= SimpleDateFormat("HH:mm", Locale.getDefault())
+        return sdf.format(Date(timestamp*1000))
+    }
+
+
 }

@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/nextDaylottieAnimation"
+            android:id="@+id/lottieAnimationView"
             android:layout_width="150dp"
             android:layout_height="130dp"
             android:layout_marginEnd="20dp"
@@ -47,7 +47,7 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/nextDaylottieAnimation"
+            app:layout_constraintStart_toEndOf="@+id/lottieAnimationView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -59,7 +59,7 @@
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/weather"
+            app:layout_constraintStart_toEndOf="@+id/weather_dscr"
             app:layout_constraintTop_toBottomOf="@+id/date" />
 
 <!--        <TextView-->
@@ -154,7 +154,7 @@
 
 
         <TextView
-            android:id="@+id/weather"
+            android:id="@+id/weather_dscr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -164,9 +164,9 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/nextDaylottieAnimation"
+            app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nextDaylottieAnimation" />
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
 
         <FrameLayout
             android:id="@+id/summaryLayout"
@@ -179,7 +179,7 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather">
+            app:layout_constraintTop_toBottomOf="@+id/weather_dscr">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -304,7 +304,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/merriweathersans_medium"
                         android:gravity="center"
-                        android:text="Condition"
+                        android:text="Chance of rain"
                         android:textColor="#FFFFFF"
                         android:textSize="10sp" />
                 </LinearLayout>

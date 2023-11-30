@@ -45,9 +45,26 @@ class FutureForecastActivity : AppCompatActivity() {
         }
 
         viewModel.tomorrowWeatherData.observe(this) {
+
             if (it != null) {
                 for (weather in it) {
-                    binding.temp.text = weather.main.temp.toString() + "\u2103"
+
+                    val temp=viewModel.convertTempFaherenheitToCelsius(weather.main.temp)
+                    val temp_min=viewModel.convertTempFaherenheitToCelsius(weather.main.temp_min)
+                    val temp_max=viewModel.convertTempFaherenheitToCelsius(weather.main.temp_max)
+                    binding.temp.text = "${temp}\u2103"
+                    binding.minTemp.text = "${temp_min}\u2103"
+                    binding.maxTemp.text = "${temp_max}\u2103"
+                    binding.humidity.text="${weather.main.humidity}%"
+                    binding.windspeed.text="${weather.wind.speed}%"
+                    binding.chanceofrain.text="${weather.pop}%"
+                    for(i in weather.weather){
+                        val description=i.description
+                        binding.weatherDscr.text=description
+                        changeImagesAccordingToWeather(description)
+                    }
+
+
                 }
             }
 
@@ -61,5 +78,19 @@ class FutureForecastActivity : AppCompatActivity() {
             futureForecastAdapter.setList(setWeatherList)
 
         }
+    }
+    private fun changeImagesAccordingToWeather(condition: String) {
+        when(condition){
+            "Haze"->{
+                binding.root.setBackgroundResource(R.drawable.cloud_bg)
+                binding.lottieAnimationView.setAnimation(R.raw.haze)
+            }
+            else ->{
+                binding.root.setBackgroundResource(R.drawable.sunny_bg)
+                binding.lottieAnimationView.setAnimation(R.raw.sun)
+            }
+        }
+        binding.lottieAnimationView.playAnimation()
+
     }
 }

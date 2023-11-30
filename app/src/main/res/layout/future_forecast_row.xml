@@ -76,10 +76,10 @@
 
                 <ImageView
                     android:id="@+id/stausIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="4dp"
                     android:src="@drawable/white_cloud" />
 
                 <TextView
@@ -105,8 +105,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
                     android:layout_marginBottom="4dp"
                     android:src="@drawable/wind" />
 
@@ -141,8 +141,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
                     android:layout_marginBottom="4dp"
                     android:src="@drawable/humidity" />
 

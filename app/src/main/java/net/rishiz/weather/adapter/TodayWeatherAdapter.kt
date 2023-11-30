@@ -28,15 +28,16 @@ class TodayWeatherAdapter :RecyclerView.Adapter<TodayWeatherHolder>(){
 
     override fun onBindViewHolder(holder: TodayWeatherHolder, position: Int) {
         val todayWeather=listOfTodayWeather[position]
-        holder.time.text= todayWeather.dt_txt.substring(11,16)
+        val time24=todayWeather.dt_txt.substring(11,16)
+        holder.time.text= convertTo12HourFormat(time24)
 
         val tempFahrenheit=todayWeather.main.temp
         val tempCelsius=(tempFahrenheit.minus(273.15))
         val tempFormatted=String.format("%.2f",tempCelsius)
-        holder.tempAtTimes.text=tempFormatted
+        holder.tempAtTimes.text="${tempFormatted}℃"
 
         val calender=Calendar.getInstance()
-        val dateFormat=SimpleDateFormat("HH:mm")
+        val dateFormat=SimpleDateFormat("HH:mm a")
         val formatedTime=dateFormat.format(calender.time)
         val timeOfApi=todayWeather.dt_txt.split("")
         val partAfterSpace=timeOfApi[1]
@@ -62,6 +63,16 @@ class TodayWeatherAdapter :RecyclerView.Adapter<TodayWeatherHolder>(){
     }
     fun setList(newList:List<WeatherList>){
         this.listOfTodayWeather=newList
+    }
+    private fun convertTo12HourFormat(time24: String): String {
+        val timeParts = time24.split(":")
+        val hour = timeParts[0].toInt()
+        val minute = timeParts[1]
+
+        val amPm = if (hour < 12) "AM" else "PM"
+        val newHour = if (hour == 0 || hour == 12) 12 else hour % 12
+
+        return "$newHour:$minute $amPm"
     }
 }
 class TodayWeatherHolder(binding: View) : RecyclerView.ViewHolder(binding){

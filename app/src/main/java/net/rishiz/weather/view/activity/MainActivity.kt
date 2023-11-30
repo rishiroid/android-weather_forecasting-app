@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
     private lateinit var viewModel:WeatherViewModel
     private lateinit var adapter:TodayWeatherAdapter
-    private val cityName="Chandrapur"
 
   //  private val shrdPref=SharedPrefs.getInstance(this@MainActivity)
     @RequiresApi(Build.VERSION_CODES.O)
@@ -75,15 +74,15 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
 
         }
-        viewModel.closerToExactWeather.observe(this) {
+        viewModel.closerToExactWeather.observe(this) { it ->
 
             val tempFahrenheit = it!!.main.temp
             val temp_min = it.main.temp_min
             val temp_max = it.main.temp_max
 
-            binding.temp.text = convertTempFaherenheitToCelsius(tempFahrenheit)
-            binding.minTemp.text = convertTempFaherenheitToCelsius(temp_min)
-            binding.maxTemp.text = convertTempFaherenheitToCelsius(temp_max)
+            binding.temp.text = "${convertTempFaherenheitToCelsius(tempFahrenheit)}℃"
+            "${convertTempFaherenheitToCelsius(temp_min)}℃".also { binding.minTemp.text = it }
+            "${convertTempFaherenheitToCelsius(temp_max)}℃".also { binding.maxTemp.text = it }
             for (weather in it.weather) {
                 binding.weather.text = weather.description
                 changeImagesAccordingToWeather(weather.description)
@@ -91,8 +90,10 @@ class MainActivity : AppCompatActivity() {
 
             val humidity = it.main.humidity
             val windspeed = it.wind.speed
-            binding.humidity.text = "$humidity%"
-            binding.windspeed.text = "$windspeed m/s"
+            val sea_level=it.main.sea_level
+            "$humidity%".also { binding.humidity.text = it }
+            "$windspeed m/s".also { binding.windspeed.text = it }
+            "$sea_level hPa".also { binding.sea.text=it }
 
 //            val sunrise=it.city.sunrise
 //            val sunset=it.city.sunset
