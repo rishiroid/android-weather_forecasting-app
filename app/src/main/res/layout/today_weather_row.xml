@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/hour"
+            android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/merriweathersans_medium"
@@ -26,7 +26,7 @@
             android:textColor="#FFFFFF" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/hourlylottieAnimation"
+            android:id="@+id/timelottieAnimation"
             android:layout_width="80dp"
             android:layout_height="50dp"
             app:lottie_autoPlay="true"
@@ -34,7 +34,7 @@
             app:lottie_rawRes="@raw/sun" />
 
         <TextView
-            android:id="@+id/hourlytemp"
+            android:id="@+id/tempAtTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/merriweathersans_medium"

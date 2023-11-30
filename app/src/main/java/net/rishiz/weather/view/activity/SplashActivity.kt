@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.core.view.ContentInfoCompat.Flags
 import net.rishiz.weather.R
 
 
@@ -15,6 +16,6 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val intent= Intent (this, MainActivity::class.java)
             startActivity(intent)
-        },3000)
+        },1000)
     }
 }

@@ -4,9 +4,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    val retrofit= Retrofit.Builder()
+
+    val retrofit: ApiInterface = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("https://api.openweathermap.org/data/2.5/")
+        .baseUrl(Utils.BASE_URL)
         .build().create(ApiInterface::class.java)
 
 }

@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/sunny_bg"
     tools:context=".view.activity.FutureForecastActivity">
+    <!--     Transparent overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#40000000"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nextDayFrameLayout"
@@ -23,8 +28,8 @@
             android:id="@+id/nextDaylottieAnimation"
             android:layout_width="150dp"
             android:layout_height="130dp"
-            android:layout_marginEnd="88dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
@@ -32,7 +37,7 @@
             app:lottie_rawRes="@raw/sun" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -49,39 +54,104 @@
             android:id="@+id/temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="100dp"
             android:fontFamily="@font/merriweathersans_semibold"
             android:text="00:00°C"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintHorizontal_bias="0.438"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/weather"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
 
-        <TextView
-            android:id="@+id/max_temp"
+<!--        <TextView-->
+<!--            android:id="@+id/max_temp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/merriweathersans_regular"-->
+<!--            android:text="Max:00:00°C"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/temp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/temp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/temp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/min_temp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/merriweathersans_regular"-->
+<!--            android:text="Min:00:00°C"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/max_temp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/max_temp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/max_temp" />-->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/merriweathersans_regular"
-            android:text="Max:00:00°C"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/temp"
+            android:layout_marginEnd="36dp"
             app:layout_constraintStart_toStartOf="@+id/temp"
-            app:layout_constraintTop_toBottomOf="@+id/temp" />
+            app:layout_constraintEnd_toEndOf="@+id/temp"
+            app:layout_constraintTop_toBottomOf="@+id/temp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweathersans_regular"
+                    android:text="Max"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    />
 
-        <TextView
-            android:id="@+id/min_temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/merriweathersans_regular"
-            android:text="Min:00:00°C"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/max_temp"
-            app:layout_constraintStart_toStartOf="@+id/max_temp"
-            app:layout_constraintTop_toBottomOf="@+id/max_temp" />
+                <TextView
+                    android:id="@+id/max_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweathersans_regular"
+                    android:text="00:00°C"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    />
+
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweathersans_regular"
+                    android:text="Min"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/min_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweathersans_regular"
+                    android:text="00:00°C"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/weather"
@@ -94,7 +164,6 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/min_temp"
             app:layout_constraintEnd_toEndOf="@+id/nextDaylottieAnimation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nextDaylottieAnimation" />
@@ -219,7 +288,7 @@
                         app:srcCompat="@drawable/conditions" />
 
                     <TextView
-                        android:id="@+id/condition"
+                        android:id="@+id/chanceofrain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/merriweathersans_medium"
@@ -248,6 +317,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="true"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/future_forecast_row"
         app:layout_constraintEnd_toEndOf="parent"

@@ -9,64 +9,162 @@
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
 
-    <TextView
-        android:id="@+id/day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="day"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/daysLottieAnimationView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/day"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/sun" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="status"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/daysLottieAnimationView"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/nextDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="26 November 2023"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+            <!--          <ImageView-->
+            <!--              android:layout_width="20dp"-->
+            <!--              android:layout_height="20dp"-->
+            <!--              android:layout_marginBottom="4dp"-->
+            <!--              android:src="@drawable/humidity"/>-->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/nextDayAnimation"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="18dp"
+                android:layout_centerHorizontal="true"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/sun" />
 
-    <TextView
-        android:id="@+id/maxTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="32dp"
-        android:text="19"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/status"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.505" />
+            <TextView
+                android:id="@+id/nextDayTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nextDayAnimation"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="20.00C"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/minTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="7"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/relativeLayout"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/stausIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/white_cloud" />
+
+                <TextView
+                    android:id="@+id/weatherDescr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="cloudy"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="4dp"
+                    android:src="@drawable/wind" />
+
+                <TextView
+                    android:id="@+id/nextDayWind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="10%"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Wind Speed"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="4dp"
+                    android:src="@drawable/humidity" />
+
+                <TextView
+                    android:id="@+id/nextDayHumadity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="10%"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Humidity"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
