@@ -11,7 +11,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sunny_bg"
+    android:background="@drawable/thunderstorm_bg"
     tools:context=".view.activity.MainActivity">
 
 <!--     Transparent overlay -->
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/searchviewshape"
         app:iconifiedByDefault="false"
@@ -330,7 +330,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/conditions" />
+                    app:srcCompat="@drawable/rain" />
 
                 <TextView
                     android:id="@+id/chanceofrain"

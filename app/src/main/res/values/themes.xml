@@ -7,6 +7,5 @@
 
     <style name="Theme.Weather" parent="Base.Theme.Weather">
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

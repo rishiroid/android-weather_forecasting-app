@@ -1,6 +1,6 @@
 package net.rishiz.weather.model
 
-data class WeatherList (
+data class WeatherList(
     val clouds: Clouds,
     val dt: Int,
     val dt_txt: String,

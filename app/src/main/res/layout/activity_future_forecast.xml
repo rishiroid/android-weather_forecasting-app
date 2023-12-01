@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/sun" />
+            app:lottie_rawRes="@raw/snow_weather" />
 
         <TextView
             android:id="@+id/date"
@@ -159,13 +159,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/merriweathersans_regular"
-            android:text="sunny"
+            android:text="Scattered clouds"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
             app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
 
         <FrameLayout
@@ -285,7 +285,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/conditions" />
+                        app:srcCompat="@drawable/rain" />
 
                     <TextView
                         android:id="@+id/chanceofrain"
