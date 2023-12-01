@@ -79,8 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="4dp"
-                    android:src="@drawable/white_cloud" />
+                    android:layout_marginBottom="4dp" />
 
                 <TextView
                     android:id="@+id/weatherDescr"

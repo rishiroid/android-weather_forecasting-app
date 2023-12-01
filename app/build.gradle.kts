@@ -61,19 +61,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     //viewmodel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-
-    implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
-//    implementation ("io.reactivex.rxjava3:rxandroid:3.1.5")
-
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-
-    implementation("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
-
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
-
-
 }

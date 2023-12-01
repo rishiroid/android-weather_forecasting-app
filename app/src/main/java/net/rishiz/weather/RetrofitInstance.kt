@@ -9,5 +9,4 @@ object RetrofitInstance {
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(Utils.BASE_URL)
         .build().create(ApiInterface::class.java)
-
 }
