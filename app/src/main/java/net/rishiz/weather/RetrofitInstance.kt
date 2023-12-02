@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitInstance {
 
     val retrofit: ApiInterface = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(Utils.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
         .build().create(ApiInterface::class.java)
 }

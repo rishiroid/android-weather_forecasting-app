@@ -102,8 +102,8 @@ class TodayWeatherAdapter : RecyclerView.Adapter<TodayWeatherHolder>() {
     }
 }
 
-class TodayWeatherHolder(binding: View) : RecyclerView.ViewHolder(binding) {
-    val time: TextView = binding.findViewById(R.id.time)
-    val timelottieAnimation: LottieAnimationView = binding.findViewById(R.id.timelottieAnimation)
-    val tempAtTimes: TextView = binding.findViewById(R.id.tempAtTime)
+class TodayWeatherHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val time: TextView = view.findViewById(R.id.time)
+    val timelottieAnimation: LottieAnimationView = view.findViewById(R.id.timelottieAnimation)
+    val tempAtTimes: TextView = view.findViewById(R.id.tempAtTime)
 }

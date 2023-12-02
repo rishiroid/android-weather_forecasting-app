@@ -49,10 +49,6 @@ class FutureForecastAdapter : RecyclerView.Adapter<FutureForecastHolder>() {
 
         for (weather in weatherObject.weather) {
 
-            if (weather.icon == "02d") {
-                val url = Utils.ICON_URL + "02d.png"
-                Picasso.get().load(url).into(holder.icon)
-            }
             when (weather.icon) {
                 "01d" -> {
                     val url = Utils.ICON_URL + "01d@2x.png"

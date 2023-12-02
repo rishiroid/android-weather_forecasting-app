@@ -41,25 +41,22 @@ class WeatherViewModel : ViewModel() {
 
         val currentDateTime = LocalDateTime.now()
         val currentDateFormated = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-        Log.d(TAG, "currentDateFormated:$currentDateFormated")
 
         val lat = sharedPrefs.getValue("lat").toString()
         val lon = sharedPrefs.getValue("lon").toString()
         Log.d(TAG, "lat:$lat,lon:$lon")
         val call = if (city != null) {
-            Log.d(TAG, "RetrofitInstance")
             RetrofitInstance.retrofit.getWeatherByCity(city)
         } else {
-            Log.d(TAG, "RetrofitInstance2")
             RetrofitInstance.retrofit.getWeather(lat, lon)
         }
         val response = call.execute()
         if (response.isSuccessful) {
             val weatherList = response.body()?.list
-            Log.d(TAG, "weatherList$weatherList")
             val city = response.body()?.city!!.name
             val sunRise = response.body()?.city?.sunrise?.let { time(it.toLong()) }
             val sunSet = response.body()?.city?.sunset?.let { time(it.toLong()) }
+
             cityName.postValue(city)
             sunrise.postValue(sunRise)
             sunset.postValue(sunSet)
@@ -71,14 +68,11 @@ class WeatherViewModel : ViewModel() {
                 )
                 if (it.dt_txt.split("\\s".toRegex()).contains(currentDateFormated)) {
                     todaysWeatherList.add(it)
-                    Log.d(TAG, "todaysWeatherList inside if:$todaysWeatherList")
                 }
             }
-            Log.d(TAG, "todaysWeatherList:$todaysWeatherList")
             //if api time closet to system time display that
             //if api time matches the sytem time then also display that
             val closetWeather = findClosetWeather(todaysWeatherList)
-            Log.d(TAG, "closetWeather:$closetWeather")
             closerToExactWeather.postValue(closetWeather)
             todaysWeatherLiveDataList.postValue(todaysWeatherList)
         }
@@ -111,7 +105,6 @@ class WeatherViewModel : ViewModel() {
             val tomorrowWeatherList = weatherList?.filter { weather ->
                 weather.dt_txt.split("\\s".toRegex()).contains(tommorrowDateTimeformated)
             }
-            Log.d(TAG, "TomorrowWeatherList:$tomorrowWeatherList")
             tomorrowWeatherData.postValue(tomorrowWeatherList)
             weatherList?.forEach {
                 //separate all the weather objects that have the date of today and tommorrow
@@ -126,7 +119,6 @@ class WeatherViewModel : ViewModel() {
                     }
                 }
             }
-            Log.d(TAG, "FuturWeatherLiveDataList:$futureWeatherList")
             futurWeatherLiveDataList.postValue(futureWeatherList)
         }
     }

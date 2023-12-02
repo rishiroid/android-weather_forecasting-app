@@ -2,7 +2,6 @@ package net.rishiz.weather.view.activity
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -33,14 +32,13 @@ class FutureForecastActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
 
         futureForecastAdapter = FutureForecastAdapter()
-        recyclerView = findViewById(R.id.recyclerView)
+
         val shardPref = SharedPrefs.getInstance(this)
         val city = shardPref.getValueOrNull("city")
 
         if (city != null) {
             viewModel.getFutureWeather(city)
         } else {
-            Log.d("future", "on")
             viewModel.getFutureWeather()
         }
 
@@ -71,8 +69,7 @@ class FutureForecastActivity : AppCompatActivity() {
 
         viewModel.futurWeatherLiveDataList.observe(this) {
             val setWeatherList = it as List<WeatherList>
-            Log.d("FutureForecastActivity", setWeatherList.toString())
-            recyclerView.adapter = futureForecastAdapter
+            binding.recyclerView.adapter = futureForecastAdapter
             futureForecastAdapter.setList(setWeatherList)
 
         }

@@ -24,7 +24,6 @@ import net.rishiz.weather.databinding.ActivityMainBinding
 import net.rishiz.weather.model.WeatherList
 import net.rishiz.weather.viewmodel.WeatherViewModel
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
@@ -36,13 +35,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: WeatherViewModel
     private lateinit var adapter: TodayWeatherAdapter
 
-    private var shrdPref: SharedPrefs? =null
+    private var shrdPref: SharedPrefs? = null
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        shrdPref=SharedPrefs.getInstance(this)
+        shrdPref = SharedPrefs.getInstance(this)
         viewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
@@ -171,20 +171,20 @@ class MainActivity : AppCompatActivity() {
             shrdPref?.setValue("lat", latitude.toString())
             shrdPref?.setValue("lon", longitude.toString())
 
-            Toast.makeText(this, "latitude:$latitude longitude:$longitude", Toast.LENGTH_SHORT).show()
+            viewModel.getWeather()
+
+            Toast.makeText(this, "latitude:$latitude longitude:$longitude", Toast.LENGTH_SHORT)
+                .show()
             Log.d(TAG, "latitude:$latitude,longitude:$longitude")
-
-            val lat = shrdPref?.getValue("lat").toString()
-            val lon = shrdPref?.getValue("lon").toString()
-            Log.d(TAG, "lat:$lat,lon:$lon")
-
 
         }
     }
+
     private fun convertTempFaherenheitToCelsius(tempFahrenheit: Double): String {
         val tempCelsius = (tempFahrenheit.minus(273.15))
         return String.format("%.2f", tempCelsius)
     }
+
     private fun searchCity() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             @RequiresApi(Build.VERSION_CODES.O)

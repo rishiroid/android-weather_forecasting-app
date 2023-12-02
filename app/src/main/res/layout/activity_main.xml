@@ -73,9 +73,7 @@
         android:text="00:00°C"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
-
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toEndOf="@+id/weather"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -85,12 +83,13 @@
         android:layout_height="150dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="88dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/sun"
         app:layout_constraintEnd_toStartOf="@+id/todayTxt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cityName"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/sun" />
+         />
 
     <TextView
         android:id="@+id/weather"
@@ -107,30 +106,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/max_temp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:fontFamily="@font/merriweathersans_regular"-->
-<!--        android:text="Max:00:00°C"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/temp"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/temp"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/temp" />-->
-<!--    -->
-
-<!--    <TextView-->
-<!--        android:id="@+id/min_temp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:fontFamily="@font/merriweathersans_regular"-->
-<!--        android:text="Min:00:00°C"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/max_temp"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/max_temp"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/max_temp" />-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -221,7 +196,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/bg_shape"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weather">
@@ -253,7 +227,6 @@
                 tools:layout_editor_absoluteY="1dp">
 
                 <ImageView
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/humidity" />
@@ -268,7 +241,6 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -513,9 +485,6 @@
         app:layout_constraintEnd_toEndOf="@+id/todayTxt"
         app:layout_constraintStart_toStartOf="@+id/todayTxt"
         tools:layout_editor_absoluteY="166dp" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
